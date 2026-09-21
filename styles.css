@@ -266,6 +266,132 @@ footer {
   }
 }
 
+.icon {
+  display: inline-block;
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  background: currentColor;
+  mask: var(--icon) center/contain no-repeat;
+}
+.icon--coffee-cup {
+  --icon: url("assets/icons/coffee-cup.svg");
+}
+.icon--arrow-left {
+  --icon: url("assets/icons/arrow-left.svg");
+}
+.icon--arrow-right {
+  --icon: url("assets/icons/arrow-right.svg");
+}
+.icon--refresh {
+  --icon: url("assets/icons/refresh.svg");
+}
+.icon--twitter {
+  --icon: url("assets/icons/twitter.svg");
+}
+.icon--instagram {
+  --icon: url("assets/icons/instagram.svg");
+}
+.icon--facebook {
+  --icon: url("assets/icons/facebook.svg");
+}
+.icon--pin {
+  --icon: url("assets/icons/pin.svg");
+}
+.icon--phone {
+  --icon: url("assets/icons/phone.svg");
+}
+.icon--clock {
+  --icon: url("assets/icons/clock.svg");
+}
+.icon--sun {
+  --icon: url("assets/icons/sun.svg");
+}
+.icon--moon {
+  --icon: url("assets/icons/moon.svg");
+}
+.icon--apple {
+  --icon: url("assets/icons/apple.svg");
+}
+.icon--google-play {
+  --icon: url("assets/icons/google-play.svg");
+}
+
+.theme-switch {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  gap: 8px;
+  width: 88px;
+  height: 44px;
+  padding: 3px;
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  transition: border-color 0.3s;
+}
+.theme-switch__option {
+  display: grid;
+  place-items: center;
+  flex: 0 0 36px;
+  height: 36px;
+  border-radius: 50%;
+  transition: background 0.3s, color 0.3s;
+}
+.theme-switch__option--light {
+  background: #665f55;
+  color: #e1d4c9;
+}
+.theme-switch .icon--sun {
+  width: 22px;
+  height: 22px;
+}
+.theme-switch .icon--moon {
+  width: 18px;
+  height: 18px;
+}
+
+[data-theme=dark] .theme-switch__option--light {
+  background: transparent;
+  color: var(--text);
+}
+[data-theme=dark] .theme-switch__option--dark {
+  background: #e1d4c9;
+  color: #403f3d;
+}
+
+.burger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--border-strong);
+  border-radius: 50%;
+  transition: background 0.3s, color 0.3s;
+}
+.burger__line {
+  width: 16px;
+  height: 1px;
+  background: currentColor;
+}
+
+.round-button {
+  display: grid;
+  place-items: center;
+  flex: 0 0 60px;
+  width: 60px;
+  height: 60px;
+  border: 1px solid var(--border-strong);
+  border-radius: 50%;
+  transition: background 0.3s, color 0.3s, border-color 0.3s;
+}
+.round-button--light {
+  border-color: #c1b6ad;
+  color: #e1d4c9;
+}
+
 .home {
   display: flex;
   flex-direction: column;

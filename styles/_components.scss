@@ -1,0 +1,98 @@
+.icon {
+  display: inline-block;
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  background: currentColor;
+  mask: var(--icon) center / contain no-repeat;
+  @each $name in coffee-cup, arrow-left, arrow-right, refresh, twitter,
+    instagram, facebook, pin, phone, clock, sun, moon, apple, google-play
+  {
+    &--#{$name} {
+      --icon: url("assets/icons/#{$name}.svg");
+    }
+  }
+}
+
+.theme-switch {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  gap: 8px;
+  width: 88px;
+  height: 44px;
+  padding: 3px;
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  transition: border-color 0.3s;
+  &__option {
+    display: grid;
+    place-items: center;
+    flex: 0 0 36px;
+    height: 36px;
+    border-radius: 50%;
+    transition:
+      background 0.3s,
+      color 0.3s;
+    &--light {
+      background: #665f55;
+      color: #e1d4c9;
+    }
+  }
+  .icon--sun {
+    width: 22px;
+    height: 22px;
+  }
+  .icon--moon {
+    width: 18px;
+    height: 18px;
+  }
+}
+[data-theme="dark"] .theme-switch__option {
+  &--light {
+    background: transparent;
+    color: var(--text);
+  }
+  &--dark {
+    background: #e1d4c9;
+    color: #403f3d;
+  }
+}
+
+.burger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--border-strong);
+  border-radius: 50%;
+  transition:
+    background 0.3s,
+    color 0.3s;
+  &__line {
+    width: 16px;
+    height: 1px;
+    background: currentColor;
+  }
+}
+
+.round-button {
+  display: grid;
+  place-items: center;
+  flex: 0 0 60px;
+  width: 60px;
+  height: 60px;
+  border: 1px solid var(--border-strong);
+  border-radius: 50%;
+  transition:
+    background 0.3s,
+    color 0.3s,
+    border-color 0.3s;
+  &--light {
+    border-color: #c1b6ad;
+    color: #e1d4c9;
+  }
+}
