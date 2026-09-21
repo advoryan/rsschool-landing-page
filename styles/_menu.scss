@@ -20,3 +20,36 @@
     margin: 40px auto 0;
   }
 }
+
+@media (max-width: 1200px) {
+  .catalog__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 1000px) {
+  .catalog__grid {
+    grid-template-columns: repeat(2, minmax(0, 310px));
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .catalog__grid .card:nth-child(n + 5) {
+    display: none;
+  }
+
+  .catalog__more {
+    display: grid;
+  }
+}
+
+@media (max-width: 700px) {
+  .catalog__grid {
+    grid-template-columns: minmax(0, 310px);
+  }
+
+  .catalog__categories {
+    gap: 8px;
+  }
+}
