@@ -3,14 +3,75 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Resource Coffee House — Home</title>
   <link rel="stylesheet" href="modern-normalize.css">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="header container">
+    <a
+      class="logo"
+      href="index.html"
+      aria-label="Resource Coffee House — home"
+    >
+      <img
+        class="logo__light"
+        src="assets/icons/logo.svg"
+        alt=""
+        width="100"
+        height="60"
+      >
+      <img
+        class="logo__dark"
+        src="assets/icons/logo-dark.svg"
+        alt=""
+        width="100"
+        height="60"
+      >
+    </a>
+    <nav>
+      <ul class="nav__list">
+        <li><a class="nav__link" href="#favorite">Favorite coffee</a></li>
+        <li><a class="nav__link" href="#about">About</a></li>
+        <li><a class="nav__link" href="#mobile">Mobile app</a></li>
+        <li><a class="nav__link" href="#contact">Contact us</a></li>
+      </ul>
+    </nav>
+    <div>
+      <button
+        type="button"
+      >
+        <span 
+          ><span></span
+        ></span>
+        <span class="theme-switch__option theme-switch__option--dark"
+          ><span class="icon icon--moon" aria-hidden="true"></span
+        ></span>
+      </button>
+      <a class="header__menu nav__link" href="menu.html"
+        >Menu <span class="icon icon--coffee-cup" aria-hidden="true"></span
+      ></a>
+    </div>
   </header>
-  <main>
+  <main class="home container">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero__offer">
+        <h1 class="hero__title" id="hero-title">
+          <em>Enjoy</em> premium coffee at our charming cafe
+        </h1>
+        <p>
+          With its inviting atmosphere and delicious coffee options, the
+          Coffee House Resource is a popular destination for coffee lovers and
+          those seeking a warm and inviting space to enjoy their favorite
+          beverage.
+        </p>
+        <a class="hero__button" href="menu.html"
+          ><span >Menu</span
+          ><span ></span
+        ></a>
+      </div>
+    </section>
   </main>
   <footer>
   </footer>
