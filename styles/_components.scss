@@ -96,3 +96,237 @@
     color: #e1d4c9;
   }
 }
+
+.slider {
+  &__row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    padding-inline: 4px;
+  }
+  &__viewport {
+    width: 480px;
+    max-width: 100%;
+    overflow: hidden;
+  }
+  &__track {
+    display: flex;
+  }
+  &__controls {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 40px;
+  }
+  &__control {
+    width: 40px;
+    height: 4px;
+    border: 0;
+    border-radius: 100px;
+    background: var(--border);
+    transition: background 0.3s;
+    &--active {
+      background: var(--border-strong);
+    }
+  }
+}
+.slide {
+  flex: 0 0 100%;
+  min-width: 0;
+  text-align: center;
+  &__image {
+    width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+  }
+  &__title {
+    margin-bottom: 16px;
+  }
+  &__description {
+    margin-bottom: 16px;
+  }
+  &__price {
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 1.25;
+  }
+}
+
+.store-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  width: 200px;
+  height: 64px;
+  padding: 12px 19px;
+  border: 1px solid var(--border-strong);
+  border-radius: 100px;
+  font-weight: 600;
+  transition:
+    background 0.3s,
+    color 0.3s;
+  .icon {
+    width: 36px;
+    height: 36px;
+  }
+  &__text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  &__caption {
+    font-size: 10px;
+    line-height: 1.4;
+  }
+  &__name {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+}
+
+.category {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 15px 7px 7px;
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  font-weight: 600;
+  transition:
+    background 0.3s,
+    color 0.3s,
+    border-color 0.3s;
+  &__icon {
+    display: grid;
+    place-items: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: var(--border);
+    transition: background 0.3s;
+  }
+  &--active {
+    background: var(--surface);
+    border-color: var(--surface);
+    color: var(--inverse);
+  }
+  &--active &__icon {
+    background: #e1d4c9;
+  }
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 506px;
+  border-radius: 40px;
+  box-shadow: inset 0 0 0 1px var(--border);
+  &__photo {
+    aspect-ratio: 1;
+    overflow: hidden;
+    border-radius: 40px;
+  }
+  &__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(1.096774);
+    transition: transform 0.5s;
+  }
+  &__body {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding: 20px;
+  }
+  &__title {
+    margin-bottom: 12px;
+    font-size: 24px;
+    line-height: 1.25;
+  }
+  &__price {
+    margin-top: auto;
+    padding-top: 12px;
+    font-size: 24px;
+    line-height: 1.25;
+    font-weight: 600;
+  }
+}
+
+@media (hover: hover) {
+  .round-button:hover,
+  .store-button:hover {
+    color: var(--inverse);
+    background: var(--surface);
+  }
+
+  .round-button--light:hover {
+    color: #403f3d;
+    background: #e1d4c9;
+    border-color: #e1d4c9;
+  }
+
+  .card:hover .card__image {
+    transform: scale(1);
+  }
+
+  .category:hover {
+    background: var(--surface);
+    color: var(--inverse);
+    border-color: var(--surface);
+  }
+
+  .category:hover .category__icon {
+    background: #e1d4c9;
+  }
+
+  .theme-switch:hover {
+    border-color: var(--border-strong);
+  }
+
+  .slider__control:hover {
+    background: var(--border-strong);
+  }
+
+  .burger:hover {
+    background: var(--surface);
+    color: var(--inverse);
+  }
+}
+
+@media (max-width: 768px) {
+  .burger {
+    display: flex;
+  }
+
+  .theme-switch {
+    width: 104px;
+    height: 52px;
+    &__option {
+      flex-basis: 44px;
+      height: 44px;
+
+      &--light {
+        height: 40px;
+      }
+    }
+  }
+
+  .slider__row {
+    padding-inline: 0;
+    gap: 24px;
+  }
+}
+
+@media (max-width: 700px) {
+  .slider__arrow {
+    display: none;
+  }
+
+  .slider__row {
+    justify-content: center;
+  }
+}
