@@ -72,6 +72,96 @@
         ></a>
       </div>
     </section>
+    <section class="favorite" id="favorite" aria-labelledby="favorite-title">
+        <h2 class="favorite__title" id="favorite-title">
+          Choose your <em>favorite</em> coffee
+        </h2>
+        <div class="slider" role="group" aria-label="Favorite coffee">
+          <div class="slider__row">
+            <button
+              class="round-button slider__arrow"
+              type="button"
+              aria-label="Previous coffee"
+            >
+              <span class="icon icon--arrow-left" aria-hidden="true"></span>
+            </button>
+            <div class="slider__viewport">
+              <div class="slider__track">
+                <article class="slide">
+                  <img
+                    class="slide__image"
+                    src="assets/images/coffee-slider-1.png"
+                    alt="S’mores Frappuccino"
+                    width="480"
+                    height="480"
+                 >
+                  <h3 class="slide__title">S’mores Frappuccino</h3>
+                  <p class="slide__description">
+                    This new drink takes an espresso and mixes it with brown
+                    sugar and cinnamon before being topped with oat milk.
+                  </p>
+                  <p class="slide__price">$5.50</p>
+                </article>
+                <article class="slide" aria-hidden="true">
+                  <img
+                    class="slide__image"
+                    src="assets/images/coffee-slider-2.png"
+                    alt="Caramel Macchiato"
+                    width="480"
+                    height="480"
+                 >
+                  <h3 class="slide__title">Caramel Macchiato</h3>
+                  <p class="slide__description">
+                    Fragrant and unique classic espresso with rich
+                    caramel-peanut syrup, with cream under whipped thick foam.
+                  </p>
+                  <p class="slide__price">$5.00</p>
+                </article>
+                <article class="slide" aria-hidden="true">
+                  <img
+                    class="slide__image"
+                    src="assets/images/coffee-slider-3.png"
+                    alt="Ice coffee"
+                    width="480"
+                    height="480"
+                 >
+                  <h3 class="slide__title">Ice coffee</h3>
+                  <p class="slide__description">
+                    A popular summer drink that tones and invigorates. Prepared
+                    from coffee, milk and ice.
+                  </p>
+                  <p class="slide__price">$4.50</p>
+                </article>
+              </div>
+            </div>
+            <button
+              class="round-button slider__arrow"
+              type="button"
+              aria-label="Next coffee"
+            >
+              <span class="icon icon--arrow-right" aria-hidden="true"></span>
+            </button>
+          </div>
+          <div class="slider__controls" role="group" aria-label="Slide indicators">
+            <button
+              class="slider__control slider__control--active"
+              type="button"
+              aria-label="Slide 1"
+              aria-current="true"
+            ></button>
+            <button
+              class="slider__control"
+              type="button"
+              aria-label="Slide 2"
+            ></button>
+            <button
+              class="slider__control"
+              type="button"
+              aria-label="Slide 3"
+            ></button>
+          </div>
+        </div>
+      </section>
   </main>
   <footer>
   </footer>
