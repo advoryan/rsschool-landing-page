@@ -1,78 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Resource Coffee House — Home</title>
-  <link rel="stylesheet" href="modern-normalize.css">
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-  <a class="skip-link" href="#main">Skip to content</a>
-  <header class="header container">
-    <a
-      class="logo"
-      href="index.html"
-      aria-label="Resource Coffee House — home"
-    >
-      <img
-        class="logo__light"
-        src="assets/icons/logo.svg"
-        alt=""
-        width="100"
-        height="60"
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta
+      name="description"
+      content="Enjoy premium coffee at Resource Coffee House, a cozy place to relax and catch up with friends."
+   >
+    <title>Resource Coffee House — Home</title>
+    <link rel="icon" href="assets/icons/logo.svg" type="image/svg+xml">
+    <link
+      rel="preload"
+      href="assets/fonts/inter-regular.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+   >
+    <link
+      rel="preload"
+      href="assets/fonts/inter-semibold.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+   >
+    <link rel="stylesheet" href="modern-normalize.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="header container">
+      <a
+        class="logo"
+        href="index.html"
+        aria-label="Resource Coffee House — home"
       >
-      <img
-        class="logo__dark"
-        src="assets/icons/logo-dark.svg"
-        alt=""
-        width="100"
-        height="60"
-      >
-    </a>
-    <nav>
-      <ul class="nav__list">
-        <li><a class="nav__link" href="#favorite">Favorite coffee</a></li>
-        <li><a class="nav__link" href="#about">About</a></li>
-        <li><a class="nav__link" href="#mobile">Mobile app</a></li>
-        <li><a class="nav__link" href="#contact">Contact us</a></li>
-      </ul>
-    </nav>
-    <div>
-      <button
-        type="button"
-      >
-        <span 
-          ><span></span
-        ></span>
-        <span class="theme-switch__option theme-switch__option--dark"
-          ><span class="icon icon--moon" aria-hidden="true"></span
-        ></span>
-      </button>
-      <a class="header__menu nav__link" href="menu.html"
-        >Menu <span class="icon icon--coffee-cup" aria-hidden="true"></span
-      ></a>
-    </div>
-  </header>
-  <main class="home container">
-    <section class="hero" aria-labelledby="hero-title">
-      <div class="hero__offer">
-        <h1 class="hero__title" id="hero-title">
-          <em>Enjoy</em> premium coffee at our charming cafe
-        </h1>
-        <p>
-          With its inviting atmosphere and delicious coffee options, the
-          Coffee House Resource is a popular destination for coffee lovers and
-          those seeking a warm and inviting space to enjoy their favorite
-          beverage.
-        </p>
-        <a class="hero__button" href="menu.html"
-          ><span >Menu</span
-          ><span ></span
+        <img
+          class="logo__light"
+          src="assets/icons/logo.svg"
+          alt=""
+          width="100"
+          height="60"
+       >
+        <img
+          class="logo__dark"
+          src="assets/icons/logo-dark.svg"
+          alt=""
+          width="100"
+          height="60"
+       >
+      </a>
+      <nav class="nav" aria-label="Main navigation">
+        <ul class="nav__list">
+          <li><a class="nav__link" href="#favorite">Favorite coffee</a></li>
+          <li><a class="nav__link" href="#about">About</a></li>
+          <li><a class="nav__link" href="#mobile">Mobile app</a></li>
+          <li><a class="nav__link" href="#contact">Contact us</a></li>
+        </ul>
+      </nav>
+      <div class="header__actions">
+        <button
+          class="theme-switch"
+          type="button"
+          aria-label="Dark theme"
+          aria-pressed="false"
+        >
+          <span class="theme-switch__option theme-switch__option--light"
+            ><span class="icon icon--sun" aria-hidden="true"></span
+          ></span>
+          <span class="theme-switch__option theme-switch__option--dark"
+            ><span class="icon icon--moon" aria-hidden="true"></span
+          ></span>
+        </button>
+        <a class="header__menu nav__link" href="menu.html"
+          >Menu <span class="icon icon--coffee-cup" aria-hidden="true"></span
         ></a>
+        <button class="burger" type="button" aria-label="Open navigation">
+          <span class="burger__line"></span><span class="burger__line"></span>
+        </button>
       </div>
-    </section>
-    <section class="favorite" id="favorite" aria-labelledby="favorite-title">
+    </header>
+    <main class="home container" id="main">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero__offer">
+          <h1 class="hero__title" id="hero-title">
+            <em>Enjoy</em> premium coffee at our charming cafe
+          </h1>
+          <p class="hero__text">
+            With its inviting atmosphere and delicious coffee options, the
+            Coffee House Resource is a popular destination for coffee lovers and
+            those seeking a warm and inviting space to enjoy their favorite
+            beverage.
+          </p>
+          <a class="hero__button" href="menu.html"
+            ><span class="hero__button-text">Menu</span
+            ><span class="icon icon--coffee-cup" aria-hidden="true"></span
+          ></a>
+        </div>
+      </section>
+      <section class="favorite" id="favorite" aria-labelledby="favorite-title">
         <h2 class="favorite__title" id="favorite-title">
           Choose your <em>favorite</em> coffee
         </h2>
@@ -258,8 +284,65 @@
           loading="lazy"
        >
       </section>
-  </main>
-  <footer>
-  </footer>
-</body>
+    </main>
+    <footer class="footer container" id="contact">
+      <div class="footer__offer">
+        <h2 class="footer__title">
+          Sip, Savor, Smile.<br><em>It’s coffee time!</em>
+        </h2>
+        <ul class="footer__socials" aria-label="Social networks">
+          <li>
+            <a
+              class="round-button round-button--light"
+              href="https://twitter.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Twitter"
+              ><span class="icon icon--twitter" aria-hidden="true"></span
+            ></a>
+          </li>
+          <li>
+            <a
+              class="round-button round-button--light"
+              href="https://www.instagram.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+              ><span class="icon icon--instagram" aria-hidden="true"></span
+            ></a>
+          </li>
+          <li>
+            <a
+              class="round-button round-button--light"
+              href="https://www.facebook.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Facebook"
+              ><span class="icon icon--facebook" aria-hidden="true"></span
+            ></a>
+          </li>
+        </ul>
+      </div>
+      <div class="footer__contacts">
+        <h3 class="footer__heading">Contact us</h3>
+        <address class="footer__address">
+          <a
+            class="footer__link"
+            href="https://www.google.com/maps/search/?api=1&amp;query=8558+Green+Rd+Los+Angeles"
+            target="_blank"
+            rel="noopener noreferrer"
+            ><span class="icon icon--pin" aria-hidden="true"></span>8558 Green
+            Rd.,&nbsp; LA</a
+          >
+          <a class="footer__link" href="tel:+16035550123"
+            ><span class="icon icon--phone" aria-hidden="true"></span>+1&nbsp;(603)&nbsp;555&#8209;0123</a
+          >
+          <p class="footer__hours">
+            <span class="icon icon--clock" aria-hidden="true"></span>Mon–Sat:
+            9:00–23:00
+          </p>
+        </address>
+      </div>
+    </footer>
+  </body>
 </html>
