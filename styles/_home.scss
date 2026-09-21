@@ -26,8 +26,8 @@
     width: 200px;
     height: 64px;
     border-radius: 100px;
-    background: #e1d4c9;
-    color: #403f3d;
+    background: var(--page);
+    color: var(--text);
     font-weight: 600;
     .icon {
       width: 20px;
@@ -35,8 +35,8 @@
       margin-left: -20px;
       opacity: 0;
       transition:
-        opacity 0.3s,
-        margin 0.3s;
+        opacity 0.3s ease-in,
+        margin 0.3s ease-in;
     }
   }
 }
@@ -75,7 +75,7 @@
     height: 100%;
     object-fit: cover;
     transform: scale(1.1);
-    transition: transform 0.5s;
+    transition: transform 0.5s ease-out;
   }
 }
 

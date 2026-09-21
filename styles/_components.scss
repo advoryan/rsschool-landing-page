@@ -24,7 +24,6 @@
   padding: 3px;
   border: 1px solid var(--border);
   border-radius: 100px;
-  transition: border-color 0.3s;
   &__option {
     display: grid;
     place-items: center;
@@ -54,8 +53,8 @@
     color: var(--text);
   }
   &--dark {
-    background: #e1d4c9;
-    color: #403f3d;
+    background: var(--accent);
+    color: var(--inverse);
   }
 }
 
@@ -64,7 +63,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 6px;
+  gap: 6.5px;
   width: 44px;
   height: 44px;
   border: 1px solid var(--border-strong);
@@ -73,8 +72,9 @@
     background 0.3s,
     color 0.3s;
   &__line {
-    width: 16px;
-    height: 1px;
+    width: 17.5px;
+    height: 1.5px;
+    border-radius: 1px;
     background: currentColor;
   }
 }
@@ -88,12 +88,12 @@
   border: 1px solid var(--border-strong);
   border-radius: 50%;
   transition:
-    background 0.3s,
-    color 0.3s,
-    border-color 0.3s;
+    background 0.5s ease-out,
+    color 0.5s ease-out,
+    border-color 0.5s ease-out;
   &--light {
-    border-color: #c1b6ad;
-    color: #e1d4c9;
+    border-color: var(--border);
+    color: var(--inverse);
   }
 }
 
@@ -165,8 +165,9 @@
   border-radius: 100px;
   font-weight: 600;
   transition:
-    background 0.3s,
-    color 0.3s;
+    background 0.5s ease-in,
+    color 0.5s ease-in,
+    border-color 0.5s ease-in;
   .icon {
     width: 36px;
     height: 36px;
@@ -195,9 +196,9 @@
   border-radius: 100px;
   font-weight: 600;
   transition:
-    background 0.3s,
-    color 0.3s,
-    border-color 0.3s;
+    background 0.5s ease-out,
+    color 0.5s ease-out,
+    border-color 0.5s ease-out;
   &__icon {
     display: grid;
     place-items: center;
@@ -205,7 +206,7 @@
     height: 30px;
     border-radius: 50%;
     background: var(--border);
-    transition: background 0.3s;
+    transition: background 0.5s ease-out;
   }
   &--active {
     background: var(--surface);
@@ -213,7 +214,7 @@
     color: var(--inverse);
   }
   &--active &__icon {
-    background: #e1d4c9;
+    background: var(--page);
   }
 }
 
@@ -234,7 +235,7 @@
     height: 100%;
     object-fit: cover;
     transform: scale(1.096774);
-    transition: transform 0.5s;
+    transition: transform 0.5s ease-out;
   }
   &__body {
     display: flex;
@@ -261,12 +262,13 @@
   .store-button:hover {
     color: var(--inverse);
     background: var(--surface);
+    border-color: var(--surface);
   }
 
   .round-button--light:hover {
-    color: #403f3d;
-    background: #e1d4c9;
-    border-color: #e1d4c9;
+    color: var(--text);
+    background: var(--page);
+    border-color: var(--page);
   }
 
   .card:hover .card__image {
@@ -280,11 +282,13 @@
   }
 
   .category:hover .category__icon {
-    background: #e1d4c9;
+    background: var(--page);
   }
 
-  .theme-switch:hover {
-    border-color: var(--border-strong);
+  [data-theme="light"] .theme-switch:hover .theme-switch__option--dark,
+  [data-theme="dark"] .theme-switch:hover .theme-switch__option--light {
+    background: var(--surface);
+    color: var(--inverse);
   }
 
   .slider__control:hover {

@@ -179,15 +179,16 @@ footer {
 }
 .header__menu {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 8px;
+  width: 72px;
 }
 .header__menu .icon {
   width: 20px;
   height: 20px;
 }
 @media (max-width: 768px) {
-  .header__menu {
+  .header .header__menu {
     display: none;
   }
 }
@@ -216,16 +217,30 @@ footer {
   flex: 1;
   display: flex;
   justify-content: center;
-  padding-right: 45px;
+  padding-right: 44px;
 }
 .nav__list {
   display: flex;
-  gap: 40.8px;
-  padding-bottom: 3px;
+  gap: 40px;
+}
+@media (min-width: 1201px) {
+  .nav__list > li:nth-child(1) {
+    width: 117px;
+  }
+  .nav__list > li:nth-child(2) {
+    width: 48px;
+  }
+  .nav__list > li:nth-child(3) {
+    width: 86px;
+  }
+  .nav__list > li:nth-child(4) {
+    width: 85px;
+  }
 }
 .nav__link {
+  display: flex;
   position: relative;
-  padding-bottom: 4.5px;
+  padding-bottom: 4px;
   font-weight: 600;
 }
 .nav__link::after {
@@ -237,7 +252,7 @@ footer {
   background: currentColor;
   content: "";
   transform: scaleX(0);
-  transition: transform 0.3s;
+  transition: transform 0.5s ease-out;
 }
 .nav__link--active::after {
   transform: scaleX(1);
@@ -318,7 +333,7 @@ footer {
   background: currentColor;
   content: "";
   transform: scaleX(0);
-  transition: transform 0.3s;
+  transition: transform 0.5s ease-out;
 }
 .footer .footer__address .icon {
   width: 20px;
@@ -404,7 +419,6 @@ footer {
   padding: 3px;
   border: 1px solid var(--border);
   border-radius: 100px;
-  transition: border-color 0.3s;
 }
 .theme-switch__option {
   display: grid;
@@ -432,8 +446,8 @@ footer {
   color: var(--text);
 }
 [data-theme=dark] .theme-switch__option--dark {
-  background: #e1d4c9;
-  color: #403f3d;
+  background: var(--accent);
+  color: var(--inverse);
 }
 
 .burger {
@@ -441,7 +455,7 @@ footer {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 6px;
+  gap: 6.5px;
   width: 44px;
   height: 44px;
   border: 1px solid var(--border-strong);
@@ -449,8 +463,9 @@ footer {
   transition: background 0.3s, color 0.3s;
 }
 .burger__line {
-  width: 16px;
-  height: 1px;
+  width: 17.5px;
+  height: 1.5px;
+  border-radius: 1px;
   background: currentColor;
 }
 
@@ -462,11 +477,11 @@ footer {
   height: 60px;
   border: 1px solid var(--border-strong);
   border-radius: 50%;
-  transition: background 0.3s, color 0.3s, border-color 0.3s;
+  transition: background 0.5s ease-out, color 0.5s ease-out, border-color 0.5s ease-out;
 }
 .round-button--light {
-  border-color: #c1b6ad;
-  color: #e1d4c9;
+  border-color: var(--border);
+  color: var(--inverse);
 }
 
 .slider__row {
@@ -535,7 +550,7 @@ footer {
   border: 1px solid var(--border-strong);
   border-radius: 100px;
   font-weight: 600;
-  transition: background 0.3s, color 0.3s;
+  transition: background 0.5s ease-in, color 0.5s ease-in, border-color 0.5s ease-in;
 }
 .store-button .icon {
   width: 36px;
@@ -563,7 +578,7 @@ footer {
   border: 1px solid var(--border);
   border-radius: 100px;
   font-weight: 600;
-  transition: background 0.3s, color 0.3s, border-color 0.3s;
+  transition: background 0.5s ease-out, color 0.5s ease-out, border-color 0.5s ease-out;
 }
 .category__icon {
   display: grid;
@@ -572,7 +587,7 @@ footer {
   height: 30px;
   border-radius: 50%;
   background: var(--border);
-  transition: background 0.3s;
+  transition: background 0.5s ease-out;
 }
 .category--active {
   background: var(--surface);
@@ -580,7 +595,7 @@ footer {
   color: var(--inverse);
 }
 .category--active .category__icon {
-  background: #e1d4c9;
+  background: var(--page);
 }
 
 .card {
@@ -601,7 +616,7 @@ footer {
   height: 100%;
   object-fit: cover;
   transform: scale(1.096774);
-  transition: transform 0.5s;
+  transition: transform 0.5s ease-out;
 }
 .card__body {
   display: flex;
@@ -627,11 +642,12 @@ footer {
   .store-button:hover {
     color: var(--inverse);
     background: var(--surface);
+    border-color: var(--surface);
   }
   .round-button--light:hover {
-    color: #403f3d;
-    background: #e1d4c9;
-    border-color: #e1d4c9;
+    color: var(--text);
+    background: var(--page);
+    border-color: var(--page);
   }
   .card:hover .card__image {
     transform: scale(1);
@@ -642,10 +658,12 @@ footer {
     border-color: var(--surface);
   }
   .category:hover .category__icon {
-    background: #e1d4c9;
+    background: var(--page);
   }
-  .theme-switch:hover {
-    border-color: var(--border-strong);
+  [data-theme=light] .theme-switch:hover .theme-switch__option--dark,
+  [data-theme=dark] .theme-switch:hover .theme-switch__option--light {
+    background: var(--surface);
+    color: var(--inverse);
   }
   .slider__control:hover {
     background: var(--border-strong);
@@ -712,8 +730,8 @@ footer {
   width: 200px;
   height: 64px;
   border-radius: 100px;
-  background: #e1d4c9;
-  color: #403f3d;
+  background: var(--page);
+  color: var(--text);
   font-weight: 600;
 }
 .hero__button .icon {
@@ -721,7 +739,7 @@ footer {
   height: 20px;
   margin-left: -20px;
   opacity: 0;
-  transition: opacity 0.3s, margin 0.3s;
+  transition: opacity 0.3s ease-in, margin 0.3s ease-in;
 }
 
 .favorite__title {
@@ -755,7 +773,7 @@ footer {
   height: 100%;
   object-fit: cover;
   transform: scale(1.1);
-  transition: transform 0.5s;
+  transition: transform 0.5s ease-out;
 }
 
 .mobile {
