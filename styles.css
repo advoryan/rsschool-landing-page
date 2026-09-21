@@ -415,7 +415,7 @@ footer {
   transition: background 0.3s, color 0.3s;
 }
 .theme-switch__option--light {
-  background: #665f55;
+  background: var(--accent);
   color: #e1d4c9;
 }
 .theme-switch .icon--sun {
