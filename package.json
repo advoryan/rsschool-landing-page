@@ -1,0 +1,11 @@
+{
+  "name": "coffee-house",
+  "private": true,
+  "scripts": {
+    "build": "sass --style=expanded --no-source-map styles/styles.scss styles.css",
+    "watch": "sass --watch --style=expanded --no-source-map styles/styles.scss:styles.css"
+  },
+  "devDependencies": {
+    "sass": "^1.93.2"
+  }
+}
