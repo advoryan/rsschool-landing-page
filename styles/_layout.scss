@@ -168,11 +168,12 @@
     transform: translateX(100%);
     transition:
       transform 0.5s ease-out,
-      visibility 0.5s;
+      visibility 0s linear 0.5s;
 
     &--open {
       visibility: visible;
       transform: translateX(0);
+      transition-delay: 0s;
     }
 
     &__list {
