@@ -557,6 +557,7 @@ footer {
   width: 480px;
   max-width: 100%;
   overflow: hidden;
+  touch-action: pan-y pinch-zoom;
 }
 .slider__track {
   display: flex;

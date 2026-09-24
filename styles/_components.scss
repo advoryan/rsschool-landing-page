@@ -116,6 +116,7 @@
     width: 480px;
     max-width: 100%;
     overflow: hidden;
+    touch-action: pan-y pinch-zoom;
   }
   &__track {
     display: flex;
