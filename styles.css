@@ -942,6 +942,9 @@ footer {
   display: none;
   margin: 40px auto 0;
 }
+.catalog__more[hidden] {
+  display: none;
+}
 
 @media (max-width: 1200px) {
   .catalog__grid {

@@ -26,6 +26,7 @@
     <link rel="stylesheet" href="modern-normalize.css">
     <link rel="stylesheet" href="styles.css">
     <script src="script.js"></script>
+    <script src="catalog.js" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -114,161 +115,26 @@
             <span class="category__icon" aria-hidden="true">🍰</span>Dessert
           </button>
         </div>
-        <div class="catalog__grid">
+        <p class="catalog__status" role="status">Loading products…</p>
+        <noscript><p>Enable JavaScript to view the menu.</p></noscript>
+        <div class="catalog__grid" aria-busy="true"></div>
+        <template id="card-template">
           <article class="card">
             <div class="card__photo">
-              <img
-                class="card__image"
-                src="assets/images/coffee-1.jpg"
-                alt="Irish coffee"
-                width="340"
-                height="340"
-             >
+              <img class="card__image" alt="" width="340" height="340">
             </div>
             <div class="card__body">
-              <h2 class="card__title">Irish coffee</h2>
-              <p class="card__description">
-                Fragrant black coffee with Jameson Irish whiskey and whipped
-                milk
-              </p>
-              <p class="card__price">$7.00</p>
+              <h2 class="card__title"></h2>
+              <p class="card__description"></p>
+              <p class="card__price"></p>
             </div>
           </article>
-          <article class="card">
-            <div class="card__photo">
-              <img
-                class="card__image"
-                src="assets/images/coffee-2.jpg"
-                alt="Kahlua coffee"
-                width="340"
-                height="340"
-             >
-            </div>
-            <div class="card__body">
-              <h2 class="card__title">Kahlua coffee</h2>
-              <p class="card__description">
-                Classic coffee with milk and Kahlua liqueur under a cap of
-                frothed milk
-              </p>
-              <p class="card__price">$7.00</p>
-            </div>
-          </article>
-          <article class="card">
-            <div class="card__photo">
-              <img
-                class="card__image"
-                src="assets/images/coffee-3.jpg"
-                alt="Honey raf"
-                width="340"
-                height="340"
-             >
-            </div>
-            <div class="card__body">
-              <h2 class="card__title">Honey raf</h2>
-              <p class="card__description">
-                Espresso with frothed milk, cream and aromatic honey
-              </p>
-              <p class="card__price">$5.50</p>
-            </div>
-          </article>
-          <article class="card">
-            <div class="card__photo">
-              <img
-                class="card__image"
-                src="assets/images/coffee-4.jpg"
-                alt="Ice cappuccino"
-                width="340"
-                height="340"
-             >
-            </div>
-            <div class="card__body">
-              <h2 class="card__title">Ice cappuccino</h2>
-              <p class="card__description">
-                Cappuccino with soft thick foam in summer version with ice
-              </p>
-              <p class="card__price">$5.00</p>
-            </div>
-          </article>
-          <article class="card">
-            <div class="card__photo">
-              <img
-                class="card__image"
-                src="assets/images/coffee-5.jpg"
-                alt="Espresso"
-                width="340"
-                height="340"
-                loading="lazy"
-             >
-            </div>
-            <div class="card__body">
-              <h2 class="card__title">Espresso</h2>
-              <p class="card__description">Classic black coffee</p>
-              <p class="card__price">$4.50</p>
-            </div>
-          </article>
-          <article class="card">
-            <div class="card__photo">
-              <img
-                class="card__image"
-                src="assets/images/coffee-6.jpg"
-                alt="Latte"
-                width="340"
-                height="340"
-                loading="lazy"
-             >
-            </div>
-            <div class="card__body">
-              <h2 class="card__title">Latte</h2>
-              <p class="card__description">
-                Espresso coffee with the addition of steamed milk and dense milk
-                foam
-              </p>
-              <p class="card__price">$5.50</p>
-            </div>
-          </article>
-          <article class="card">
-            <div class="card__photo">
-              <img
-                class="card__image"
-                src="assets/images/coffee-7.jpg"
-                alt="Latte macchiato"
-                width="340"
-                height="340"
-                loading="lazy"
-             >
-            </div>
-            <div class="card__body">
-              <h2 class="card__title">Latte macchiato</h2>
-              <p class="card__description">
-                Espresso with frothed milk and chocolate
-              </p>
-              <p class="card__price">$5.50</p>
-            </div>
-          </article>
-          <article class="card">
-            <div class="card__photo">
-              <img
-                class="card__image"
-                src="assets/images/coffee-8.jpg"
-                alt="Coffee with cognac"
-                width="340"
-                height="340"
-                loading="lazy"
-             >
-            </div>
-            <div class="card__body">
-              <h2 class="card__title">Coffee with cognac</h2>
-              <p class="card__description">
-                Fragrant black coffee with cognac and whipped cream
-              </p>
-              <p class="card__price">$6.50</p>
-            </div>
-          </article>
-        </div>
+        </template>
         <button
           class="round-button catalog__more"
           type="button"
           aria-label="Show more coffee"
+          hidden
         >
           <span class="icon icon--refresh" aria-hidden="true"></span>
         </button>
