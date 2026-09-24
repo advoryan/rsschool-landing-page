@@ -41,6 +41,9 @@
 
 html {
   scroll-behavior: smooth;
+  &.menu-open {
+    overflow: hidden;
+  }
 }
 body {
   margin: 0;

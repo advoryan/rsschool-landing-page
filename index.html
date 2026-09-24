@@ -50,12 +50,17 @@
           height="60"
        >
       </a>
-      <nav class="nav" aria-label="Main navigation">
+      <nav class="nav" id="navigation" aria-label="Main navigation">
         <ul class="nav__list">
           <li><a class="nav__link" href="#favorite">Favorite coffee</a></li>
           <li><a class="nav__link" href="#about">About</a></li>
           <li><a class="nav__link" href="#mobile">Mobile app</a></li>
           <li><a class="nav__link" href="#contact">Contact us</a></li>
+          <li class="nav__menu">
+            <a class="nav__link" href="menu.html"
+              >Menu <span class="icon icon--coffee-cup" aria-hidden="true"></span
+            ></a>
+          </li>
         </ul>
       </nav>
       <div class="header__actions">
@@ -75,7 +80,7 @@
         <a class="header__menu nav__link" href="menu.html"
           >Menu <span class="icon icon--coffee-cup" aria-hidden="true"></span
         ></a>
-        <button class="burger" type="button" aria-label="Open navigation">
+        <button class="burger" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="navigation">
           <span class="burger__line"></span><span class="burger__line"></span>
         </button>
       </div>
