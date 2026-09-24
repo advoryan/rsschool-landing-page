@@ -123,6 +123,7 @@
         <div class="catalog__grid" id="catalog-grid" aria-busy="true"></div>
         <template id="card-template">
           <article class="card">
+            <button class="card__open" type="button" aria-haspopup="dialog" aria-controls="product-dialog"></button>
             <div class="card__photo">
               <img class="card__image" alt="" width="340" height="340">
             </div>
@@ -144,6 +145,36 @@
         </button>
       </section>
     </main>
+    <dialog class="modal" id="product-dialog" aria-labelledby="product-title" aria-describedby="product-description">
+      <div class="modal__layout">
+        <div class="modal__photo"></div>
+        <div class="modal__body">
+          <div>
+            <h2 class="modal__title" id="product-title">Product details</h2>
+            <p class="modal__description" id="product-description"></p>
+          </div>
+          <div class="modal__group" role="group" aria-labelledby="size-label">
+            <p id="size-label">Size</p>
+            <div class="modal__options" data-options="sizes"></div>
+          </div>
+          <div class="modal__group" role="group" aria-labelledby="additives-label">
+            <p id="additives-label">Additives</p>
+            <div class="modal__options" data-options="additives"></div>
+          </div>
+          <p class="modal__total">Total: <output class="modal__price"></output></p>
+          <div class="modal__notice">
+            <span class="modal__info icon" aria-hidden="true"></span>
+            <p>The cost is not final. Download our mobile app to see the final price and place your order. Earn loyalty points and enjoy your favorite coffee with up to 20% discount.</p>
+          </div>
+          <button class="modal__close" type="button" autofocus>Close</button>
+        </div>
+      </div>
+    </dialog>
+    <template id="option-template">
+      <button class="modal__option category" type="button" aria-pressed="false">
+        <span class="category__icon"></span><span class="modal__option-label"></span>
+      </button>
+    </template>
     <footer class="footer container" id="contact">
       <div class="footer__offer">
         <h2 class="footer__title">

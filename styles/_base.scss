@@ -41,7 +41,8 @@
 
 html {
   scroll-behavior: smooth;
-  &.menu-open {
+  &.menu-open,
+  &.modal-open {
     overflow: hidden;
   }
 }
