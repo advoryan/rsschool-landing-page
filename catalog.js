@@ -9,6 +9,8 @@ const optionTemplate = document.querySelector('#option-template');
 let products = [];
 let activeCategory = 'coffee';
 let showAllProducts = false;
+let dialogTrigger = null;
+let backdropPressed = false;
 
 function createCard(product) {
   const card = cardTemplate.content.firstElementChild.cloneNode(true);
@@ -68,7 +70,9 @@ function createOption(value, label, active = false) {
   return option;
 }
 
-function openProduct(product) {
+function openProduct(product, trigger) {
+  dialogTrigger = trigger;
+  backdropPressed = false;
   const image = document.createElement('img');
   image.className = 'modal__image';
   image.width = 340;
@@ -91,7 +95,42 @@ function openProduct(product) {
 
 grid.addEventListener('click', (event) => {
   const card = event.target.closest('.card');
-  if (card) openProduct(products[Number(card.dataset.productIndex)]);
+  if (card) {
+    openProduct(products[Number(card.dataset.productIndex)], card.querySelector('.card__open'));
+  }
+});
+
+function isOutsideDialog(event) {
+  const bounds = productDialog.getBoundingClientRect();
+  return event.clientX < bounds.left || event.clientX > bounds.right ||
+    event.clientY < bounds.top || event.clientY > bounds.bottom;
+}
+
+productDialog.addEventListener('pointerdown', (event) => {
+  backdropPressed = event.target === productDialog && isOutsideDialog(event);
+});
+
+productDialog.addEventListener('click', (event) => {
+  if (backdropPressed && event.target === productDialog && isOutsideDialog(event)) {
+    productDialog.close();
+  }
+  backdropPressed = false;
+});
+
+productDialog.addEventListener('keydown', (event) => {
+  if (event.key !== 'Tab') return;
+
+  const buttons = [...productDialog.querySelectorAll('button:not(:disabled)')];
+  const first = buttons[0];
+  const last = buttons[buttons.length - 1];
+
+  if (event.shiftKey && document.activeElement === first) {
+    event.preventDefault();
+    last.focus();
+  } else if (!event.shiftKey && document.activeElement === last) {
+    event.preventDefault();
+    first.focus();
+  }
 });
 
 productDialog.querySelector('.modal__close').addEventListener('click', () => {
@@ -99,7 +138,14 @@ productDialog.querySelector('.modal__close').addEventListener('click', () => {
 });
 
 productDialog.addEventListener('close', () => {
+  if (productDialog.open) return;
+
   document.documentElement.classList.remove('modal-open');
+  const target = dialogTrigger?.getClientRects().length
+    ? dialogTrigger
+    : document.querySelector('.catalog__categories .category--active');
+  target.focus({ preventScroll: true });
+  dialogTrigger = null;
 });
 
 categories.forEach((button) => {
