@@ -3,8 +3,10 @@ const cardTemplate = document.querySelector('#card-template');
 const catalogStatus = document.querySelector('.catalog__status');
 const moreButton = document.querySelector('.catalog__more');
 const categories = [...document.querySelectorAll('.category')];
+const catalogMobile = window.matchMedia('(max-width: 768px)');
 let products = [];
 let activeCategory = 'coffee';
+let showAllProducts = false;
 
 function createCard(product) {
   const card = cardTemplate.content.firstElementChild.cloneNode(true);
@@ -26,9 +28,33 @@ function renderProducts(category) {
     .map(createCard);
 
   grid.replaceChildren(...cards);
-  moreButton.hidden = cards.length <= 4;
+  showAllProducts = false;
+  updateVisibleProducts();
   moreButton.setAttribute('aria-label', `Show more ${category}`);
 }
+
+function updateVisibleProducts() {
+  const cards = [...grid.children];
+  const limit = catalogMobile.matches && !showAllProducts ? 4 : cards.length;
+
+  cards.forEach((card, index) => {
+    card.hidden = index >= limit;
+  });
+  moreButton.hidden = cards.length <= limit;
+}
+
+moreButton.addEventListener('click', () => {
+  const firstHiddenCard = grid.querySelector('.card[hidden]');
+  showAllProducts = true;
+  updateVisibleProducts();
+
+  if (firstHiddenCard) {
+    firstHiddenCard.tabIndex = -1;
+    firstHiddenCard.focus({ preventScroll: true });
+  }
+});
+
+catalogMobile.addEventListener('change', updateVisibleProducts);
 
 categories.forEach((button) => {
   button.addEventListener('click', () => {
