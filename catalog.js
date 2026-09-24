@@ -2,7 +2,9 @@ const grid = document.querySelector('.catalog__grid');
 const cardTemplate = document.querySelector('#card-template');
 const catalogStatus = document.querySelector('.catalog__status');
 const moreButton = document.querySelector('.catalog__more');
+const categories = [...document.querySelectorAll('.category')];
 let products = [];
+let activeCategory = 'coffee';
 
 function createCard(product) {
   const card = cardTemplate.content.firstElementChild.cloneNode(true);
@@ -24,7 +26,23 @@ function renderProducts(category) {
     .map(createCard);
 
   grid.replaceChildren(...cards);
+  moreButton.hidden = cards.length <= 4;
+  moreButton.setAttribute('aria-label', `Show more ${category}`);
 }
+
+categories.forEach((button) => {
+  button.addEventListener('click', () => {
+    if (button.dataset.category === activeCategory) return;
+
+    activeCategory = button.dataset.category;
+    categories.forEach((category) => {
+      const active = category.dataset.category === activeCategory;
+      category.classList.toggle('category--active', active);
+      category.setAttribute('aria-pressed', String(active));
+    });
+    renderProducts(activeCategory);
+  });
+});
 
 async function loadProducts() {
   try {
@@ -34,7 +52,9 @@ async function loadProducts() {
     products = await response.json();
     renderProducts('coffee');
     catalogStatus.hidden = true;
-    moreButton.hidden = false;
+    categories.forEach((button) => {
+      button.disabled = false;
+    });
   } catch {
     catalogStatus.textContent = 'Unable to load the menu. Please reload the page.';
   } finally {

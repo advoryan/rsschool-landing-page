@@ -105,19 +105,22 @@
             class="category category--active"
             type="button"
             aria-pressed="true"
+            aria-controls="catalog-grid"
+            data-category="coffee"
+            disabled
           >
             <span class="category__icon" aria-hidden="true">☕</span>Coffee
           </button>
-          <button class="category" type="button" aria-pressed="false">
+          <button class="category" type="button" aria-pressed="false" aria-controls="catalog-grid" data-category="tea" disabled>
             <span class="category__icon" aria-hidden="true">🫖</span>Tea
           </button>
-          <button class="category" type="button" aria-pressed="false">
+          <button class="category" type="button" aria-pressed="false" aria-controls="catalog-grid" data-category="dessert" disabled>
             <span class="category__icon" aria-hidden="true">🍰</span>Dessert
           </button>
         </div>
         <p class="catalog__status" role="status">Loading products…</p>
         <noscript><p>Enable JavaScript to view the menu.</p></noscript>
-        <div class="catalog__grid" aria-busy="true"></div>
+        <div class="catalog__grid" id="catalog-grid" aria-busy="true"></div>
         <template id="card-template">
           <article class="card">
             <div class="card__photo">
