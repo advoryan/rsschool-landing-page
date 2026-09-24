@@ -11,6 +11,7 @@ let activeCategory = 'coffee';
 let showAllProducts = false;
 let dialogTrigger = null;
 let backdropPressed = false;
+let currentProduct = null;
 
 function createCard(product) {
   const card = cardTemplate.content.firstElementChild.cloneNode(true);
@@ -71,6 +72,7 @@ function createOption(value, label, active = false) {
 }
 
 function openProduct(product, trigger) {
+  currentProduct = product;
   dialogTrigger = trigger;
   backdropPressed = false;
   const image = document.createElement('img');
@@ -82,15 +84,29 @@ function openProduct(product, trigger) {
   productDialog.querySelector('.modal__photo').replaceChildren(image);
   productDialog.querySelector('.modal__title').textContent = product.name;
   productDialog.querySelector('.modal__description').textContent = product.description;
-  productDialog.querySelector('.modal__price').textContent = `$${Number(product.price).toFixed(2)}`;
   productDialog.querySelector('[data-options="sizes"]').replaceChildren(
     ...Object.entries(product.sizes).map(([key, size]) => createOption(key, size.size, key === 's'))
   );
   productDialog.querySelector('[data-options="additives"]').replaceChildren(
     ...product.additives.map((additive, index) => createOption(String(index + 1), additive.name))
   );
+  updateProductPrice();
   document.documentElement.classList.add('modal-open');
   productDialog.showModal();
+}
+
+function updateProductPrice() {
+  const size = productDialog.querySelector('[data-options="sizes"] [aria-pressed="true"]');
+  const additives = productDialog.querySelectorAll('[data-options="additives"] [aria-pressed="true"]');
+  let total = Math.round(Number(currentProduct.price) * 100);
+  total += Math.round(Number(currentProduct.sizes[size.dataset.value]['add-price']) * 100);
+
+  additives.forEach((option) => {
+    const additive = currentProduct.additives[Number(option.dataset.value) - 1];
+    total += Math.round(Number(additive['add-price']) * 100);
+  });
+
+  productDialog.querySelector('.modal__price').textContent = `$${(total / 100).toFixed(2)}`;
 }
 
 grid.addEventListener('click', (event) => {
@@ -111,6 +127,23 @@ productDialog.addEventListener('pointerdown', (event) => {
 });
 
 productDialog.addEventListener('click', (event) => {
+  const option = event.target.closest('.modal__option');
+  if (option) {
+    const group = option.closest('.modal__options');
+
+    group.querySelectorAll('.modal__option').forEach((button) => {
+      let active = button.getAttribute('aria-pressed') === 'true';
+      if (group.dataset.options === 'sizes') {
+        active = button === option;
+      } else if (button === option) {
+        active = !active;
+      }
+      button.classList.toggle('category--active', active);
+      button.setAttribute('aria-pressed', String(active));
+    });
+    updateProductPrice();
+  }
+
   if (backdropPressed && event.target === productDialog && isOutsideDialog(event)) {
     productDialog.close();
   }
