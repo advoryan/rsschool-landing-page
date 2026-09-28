@@ -76,6 +76,13 @@
     height: 1.5px;
     border-radius: 1px;
     background: currentColor;
+    transition: transform 0.5s ease-out;
+  }
+  &[aria-expanded="true"] &__line:first-child {
+    transform: translateY(4px) rotate(45deg);
+  }
+  &[aria-expanded="true"] &__line:last-child {
+    transform: translateY(-4px) rotate(-45deg);
   }
 }
 
@@ -109,9 +116,11 @@
     width: 480px;
     max-width: 100%;
     overflow: hidden;
+    touch-action: pan-y pinch-zoom;
   }
   &__track {
     display: flex;
+    transition: transform 0.5s ease-in-out;
   }
   &__controls {
     display: flex;
@@ -219,6 +228,15 @@
 }
 
 .card {
+  position: relative;
+  &__open {
+    position: absolute;
+    z-index: 1;
+    inset: 0;
+    width: 100%;
+    border: 0;
+    border-radius: inherit;
+  }
   display: flex;
   flex-direction: column;
   min-width: 0;
