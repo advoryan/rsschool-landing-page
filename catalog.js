@@ -6,6 +6,12 @@ const categories = [...document.querySelectorAll('.category')];
 const catalogMobile = window.matchMedia('(max-width: 768px)');
 const productDialog = document.querySelector('.modal');
 const optionTemplate = document.querySelector('#option-template');
+const dialogPhoto = productDialog.querySelector('.modal__photo');
+const dialogTitle = productDialog.querySelector('.modal__title');
+const dialogDescription = productDialog.querySelector('.modal__description');
+const dialogPrice = productDialog.querySelector('.modal__price');
+const sizeOptions = productDialog.querySelector('[data-options="sizes"]');
+const additiveOptions = productDialog.querySelector('[data-options="additives"]');
 let products = [];
 let activeCategory = 'coffee';
 let showAllProducts = false;
@@ -16,9 +22,10 @@ let currentProduct = null;
 function createCard(product) {
   const card = cardTemplate.content.firstElementChild.cloneNode(true);
   const image = card.querySelector('.card__image');
+  const button = card.querySelector('.card__open');
 
-  card.dataset.productIndex = products.indexOf(product);
-  card.querySelector('.card__open').setAttribute('aria-label', `View ${product.name}`);
+  button.setAttribute('aria-label', `View ${product.name}`);
+  button.addEventListener('click', () => openProduct(product, button));
   image.src = product.image;
   image.alt = product.name;
   card.querySelector('.card__title').textContent = product.name;
@@ -28,15 +35,15 @@ function createCard(product) {
   return card;
 }
 
-function renderProducts(category) {
+function renderProducts() {
   const cards = products
-    .filter((product) => product.category === category)
+    .filter((product) => product.category === activeCategory)
     .map(createCard);
 
   grid.replaceChildren(...cards);
   showAllProducts = false;
   updateVisibleProducts();
-  moreButton.setAttribute('aria-label', `Show more ${category}`);
+  moreButton.setAttribute('aria-label', `Show more ${activeCategory}`);
 }
 
 function updateVisibleProducts() {
@@ -81,13 +88,13 @@ function openProduct(product, trigger) {
   image.height = 340;
   image.src = product.image;
   image.alt = product.name;
-  productDialog.querySelector('.modal__photo').replaceChildren(image);
-  productDialog.querySelector('.modal__title').textContent = product.name;
-  productDialog.querySelector('.modal__description').textContent = product.description;
-  productDialog.querySelector('[data-options="sizes"]').replaceChildren(
+  dialogPhoto.replaceChildren(image);
+  dialogTitle.textContent = product.name;
+  dialogDescription.textContent = product.description;
+  sizeOptions.replaceChildren(
     ...Object.entries(product.sizes).map(([key, size]) => createOption(key, size.size, key === 's'))
   );
-  productDialog.querySelector('[data-options="additives"]').replaceChildren(
+  additiveOptions.replaceChildren(
     ...product.additives.map((additive, index) => createOption(String(index + 1), additive.name))
   );
   updateProductPrice();
@@ -96,8 +103,8 @@ function openProduct(product, trigger) {
 }
 
 function updateProductPrice() {
-  const size = productDialog.querySelector('[data-options="sizes"] [aria-pressed="true"]');
-  const additives = productDialog.querySelectorAll('[data-options="additives"] [aria-pressed="true"]');
+  const size = sizeOptions.querySelector('[aria-pressed="true"]');
+  const additives = additiveOptions.querySelectorAll('[aria-pressed="true"]');
   let total = Math.round(Number(currentProduct.price) * 100);
   total += Math.round(Number(currentProduct.sizes[size.dataset.value]['add-price']) * 100);
 
@@ -106,15 +113,8 @@ function updateProductPrice() {
     total += Math.round(Number(additive['add-price']) * 100);
   });
 
-  productDialog.querySelector('.modal__price').textContent = `$${(total / 100).toFixed(2)}`;
+  dialogPrice.textContent = `$${(total / 100).toFixed(2)}`;
 }
-
-grid.addEventListener('click', (event) => {
-  const card = event.target.closest('.card');
-  if (card) {
-    openProduct(products[Number(card.dataset.productIndex)], card.querySelector('.card__open'));
-  }
-});
 
 function isOutsideDialog(event) {
   const bounds = productDialog.getBoundingClientRect();
@@ -191,7 +191,7 @@ categories.forEach((button) => {
       category.classList.toggle('category--active', active);
       category.setAttribute('aria-pressed', String(active));
     });
-    renderProducts(activeCategory);
+    renderProducts();
   });
 });
 
@@ -201,7 +201,7 @@ async function loadProducts() {
     if (!response.ok) throw new Error('Unable to load products');
 
     products = await response.json();
-    renderProducts('coffee');
+    renderProducts();
     catalogStatus.hidden = true;
     categories.forEach((button) => {
       button.disabled = false;
