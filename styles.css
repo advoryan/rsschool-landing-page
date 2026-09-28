@@ -1037,6 +1037,9 @@ footer {
   flex-wrap: wrap;
   gap: 8px;
 }
+.modal__options[data-options=additives] .modal__option {
+  padding-right: 16px;
+}
 .modal__option {
   white-space: nowrap;
 }
@@ -1091,7 +1094,7 @@ footer {
 }
 @media (hover: hover) {
   .modal__close:hover {
-    background: var(--modal-control);
+    background: #665f55;
     color: var(--inverse);
   }
 }

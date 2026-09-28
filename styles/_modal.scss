@@ -54,6 +54,10 @@
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
+
+    &[data-options="additives"] .modal__option {
+      padding-right: 16px;
+    }
   }
   &__option {
     white-space: nowrap;
@@ -112,7 +116,7 @@
 
     @media (hover: hover) {
       &:hover {
-        background: var(--modal-control);
+        background: #665f55;
         color: var(--inverse);
       }
     }
