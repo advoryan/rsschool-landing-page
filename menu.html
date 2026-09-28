@@ -26,6 +26,7 @@
     <link rel="stylesheet" href="modern-normalize.css">
     <link rel="stylesheet" href="styles.css">
     <script src="script.js"></script>
+    <script src="catalog.js" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -50,7 +51,7 @@
           height="60"
        >
       </a>
-      <nav class="nav" aria-label="Main navigation">
+      <nav class="nav" id="navigation" aria-label="Main navigation">
         <ul class="nav__list">
           <li>
             <a class="nav__link" href="index.html#favorite">Favorite coffee</a>
@@ -58,6 +59,11 @@
           <li><a class="nav__link" href="index.html#about">About</a></li>
           <li><a class="nav__link" href="index.html#mobile">Mobile app</a></li>
           <li><a class="nav__link" href="#contact">Contact us</a></li>
+          <li class="nav__menu">
+            <a class="nav__link nav__link--active" href="menu.html" aria-current="page"
+              >Menu <span class="icon icon--coffee-cup" aria-hidden="true"></span
+            ></a>
+          </li>
         </ul>
       </nav>
       <div class="header__actions">
@@ -80,7 +86,7 @@
           aria-current="page"
           >Menu <span class="icon icon--coffee-cup" aria-hidden="true"></span
         ></a>
-        <button class="burger" type="button" aria-label="Open navigation">
+        <button class="burger" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="navigation">
           <span class="burger__line"></span><span class="burger__line"></span>
         </button>
       </div>
@@ -99,176 +105,76 @@
             class="category category--active"
             type="button"
             aria-pressed="true"
+            aria-controls="catalog-grid"
+            data-category="coffee"
+            disabled
           >
             <span class="category__icon" aria-hidden="true">☕</span>Coffee
           </button>
-          <button class="category" type="button" aria-pressed="false">
+          <button class="category" type="button" aria-pressed="false" aria-controls="catalog-grid" data-category="tea" disabled>
             <span class="category__icon" aria-hidden="true">🫖</span>Tea
           </button>
-          <button class="category" type="button" aria-pressed="false">
+          <button class="category" type="button" aria-pressed="false" aria-controls="catalog-grid" data-category="dessert" disabled>
             <span class="category__icon" aria-hidden="true">🍰</span>Dessert
           </button>
         </div>
-        <div class="catalog__grid">
+        <p class="catalog__status" role="status">Loading products…</p>
+        <noscript><p>Enable JavaScript to view the menu.</p></noscript>
+        <div class="catalog__grid" id="catalog-grid" aria-busy="true"></div>
+        <template id="card-template">
           <article class="card">
+            <button class="card__open" type="button" aria-haspopup="dialog" aria-controls="product-dialog"></button>
             <div class="card__photo">
-              <img
-                class="card__image"
-                src="assets/images/coffee-1.jpg"
-                alt="Irish coffee"
-                width="340"
-                height="340"
-             >
+              <img class="card__image" alt="" width="340" height="340">
             </div>
             <div class="card__body">
-              <h2 class="card__title">Irish coffee</h2>
-              <p class="card__description">
-                Fragrant black coffee with Jameson Irish whiskey and whipped
-                milk
-              </p>
-              <p class="card__price">$7.00</p>
+              <h2 class="card__title"></h2>
+              <p class="card__description"></p>
+              <p class="card__price"></p>
             </div>
           </article>
-          <article class="card">
-            <div class="card__photo">
-              <img
-                class="card__image"
-                src="assets/images/coffee-2.jpg"
-                alt="Kahlua coffee"
-                width="340"
-                height="340"
-             >
-            </div>
-            <div class="card__body">
-              <h2 class="card__title">Kahlua coffee</h2>
-              <p class="card__description">
-                Classic coffee with milk and Kahlua liqueur under a cap of
-                frothed milk
-              </p>
-              <p class="card__price">$7.00</p>
-            </div>
-          </article>
-          <article class="card">
-            <div class="card__photo">
-              <img
-                class="card__image"
-                src="assets/images/coffee-3.jpg"
-                alt="Honey raf"
-                width="340"
-                height="340"
-             >
-            </div>
-            <div class="card__body">
-              <h2 class="card__title">Honey raf</h2>
-              <p class="card__description">
-                Espresso with frothed milk, cream and aromatic honey
-              </p>
-              <p class="card__price">$5.50</p>
-            </div>
-          </article>
-          <article class="card">
-            <div class="card__photo">
-              <img
-                class="card__image"
-                src="assets/images/coffee-4.jpg"
-                alt="Ice cappuccino"
-                width="340"
-                height="340"
-             >
-            </div>
-            <div class="card__body">
-              <h2 class="card__title">Ice cappuccino</h2>
-              <p class="card__description">
-                Cappuccino with soft thick foam in summer version with ice
-              </p>
-              <p class="card__price">$5.00</p>
-            </div>
-          </article>
-          <article class="card">
-            <div class="card__photo">
-              <img
-                class="card__image"
-                src="assets/images/coffee-5.jpg"
-                alt="Espresso"
-                width="340"
-                height="340"
-                loading="lazy"
-             >
-            </div>
-            <div class="card__body">
-              <h2 class="card__title">Espresso</h2>
-              <p class="card__description">Classic black coffee</p>
-              <p class="card__price">$4.50</p>
-            </div>
-          </article>
-          <article class="card">
-            <div class="card__photo">
-              <img
-                class="card__image"
-                src="assets/images/coffee-6.jpg"
-                alt="Latte"
-                width="340"
-                height="340"
-                loading="lazy"
-             >
-            </div>
-            <div class="card__body">
-              <h2 class="card__title">Latte</h2>
-              <p class="card__description">
-                Espresso coffee with the addition of steamed milk and dense milk
-                foam
-              </p>
-              <p class="card__price">$5.50</p>
-            </div>
-          </article>
-          <article class="card">
-            <div class="card__photo">
-              <img
-                class="card__image"
-                src="assets/images/coffee-7.jpg"
-                alt="Latte macchiato"
-                width="340"
-                height="340"
-                loading="lazy"
-             >
-            </div>
-            <div class="card__body">
-              <h2 class="card__title">Latte macchiato</h2>
-              <p class="card__description">
-                Espresso with frothed milk and chocolate
-              </p>
-              <p class="card__price">$5.50</p>
-            </div>
-          </article>
-          <article class="card">
-            <div class="card__photo">
-              <img
-                class="card__image"
-                src="assets/images/coffee-8.jpg"
-                alt="Coffee with cognac"
-                width="340"
-                height="340"
-                loading="lazy"
-             >
-            </div>
-            <div class="card__body">
-              <h2 class="card__title">Coffee with cognac</h2>
-              <p class="card__description">
-                Fragrant black coffee with cognac and whipped cream
-              </p>
-              <p class="card__price">$6.50</p>
-            </div>
-          </article>
-        </div>
+        </template>
         <button
           class="round-button catalog__more"
           type="button"
           aria-label="Show more coffee"
+          aria-controls="catalog-grid"
+          hidden
         >
           <span class="icon icon--refresh" aria-hidden="true"></span>
         </button>
       </section>
     </main>
+    <dialog class="modal" id="product-dialog" aria-labelledby="product-title" aria-describedby="product-description">
+      <div class="modal__layout">
+        <div class="modal__photo"></div>
+        <div class="modal__body">
+          <div>
+            <h2 class="modal__title" id="product-title">Product details</h2>
+            <p class="modal__description" id="product-description"></p>
+          </div>
+          <div class="modal__group" role="group" aria-labelledby="size-label">
+            <p id="size-label">Size</p>
+            <div class="modal__options" data-options="sizes"></div>
+          </div>
+          <div class="modal__group" role="group" aria-labelledby="additives-label">
+            <p id="additives-label">Additives</p>
+            <div class="modal__options" data-options="additives"></div>
+          </div>
+          <p class="modal__total">Total: <output class="modal__price" aria-label="Total price" aria-live="polite" aria-atomic="true"></output></p>
+          <div class="modal__notice">
+            <span class="modal__info icon" aria-hidden="true"></span>
+            <p>The cost is not final. Download our mobile app to see the final price and place your order. Earn loyalty points and enjoy your favorite coffee with up to 20% discount.</p>
+          </div>
+          <button class="modal__close" type="button" autofocus>Close</button>
+        </div>
+      </div>
+    </dialog>
+    <template id="option-template">
+      <button class="modal__option category" type="button" aria-pressed="false">
+        <span class="category__icon"></span><span class="modal__option-label"></span>
+      </button>
+    </template>
     <footer class="footer container" id="contact">
       <div class="footer__offer">
         <h2 class="footer__title">

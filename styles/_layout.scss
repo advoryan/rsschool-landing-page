@@ -22,6 +22,8 @@
 }
 
 .header {
+  position: relative;
+  z-index: 2;
   display: flex;
   align-items: center;
   height: 60px;
@@ -86,6 +88,9 @@
   display: flex;
   justify-content: center;
   padding-right: 44px;
+  &__menu {
+    display: none;
+  }
   &__list {
     display: flex;
     gap: 40px;
@@ -150,7 +155,61 @@
   }
 
   @media (max-width: 768px) {
-    display: none;
+    position: fixed;
+    inset: 100px 0 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 60px 40px;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    background: var(--page);
+    visibility: hidden;
+    transform: translateX(100%);
+    transition:
+      transform 0.5s ease-out,
+      visibility 0s linear 0.5s;
+
+    &--open {
+      visibility: visible;
+      transform: translateX(0);
+      transition-delay: 0s;
+    }
+
+    &__list {
+      flex-direction: column;
+      align-items: center;
+      flex-shrink: 0;
+      gap: 60px;
+      margin-block: auto;
+    }
+
+    &__link {
+      align-items: center;
+      gap: 16px;
+      padding-bottom: 0;
+      font-size: 32px;
+      line-height: 1.25;
+    }
+
+    &__menu {
+      display: block;
+      margin-top: 40px;
+
+      .icon {
+        --icon: url("assets/icons/coffee-cup-menu.svg");
+        width: 40px;
+        height: 40px;
+      }
+    }
+  }
+
+  @media (max-width: 700px) {
+    padding-inline: 16px;
+
+    &__list {
+      margin-block: 0;
+    }
   }
 }
 
